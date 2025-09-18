@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <br>
+        <b>{{post.id}} . {{ post.title }}</b> by <i>{{ post.author }}</i>
+        &nbsp;
+        <a href="{% url 'blog-detail' post.id %}">
+            <button type="button">View</button>
+        </a>
+        <br>
+    {% endfor %}
+
+    <br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'blog-create' %}">
+            <button type="button">Create Blog</button>
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}?next={% url 'blog-create' %}">
+            <button type="button">Create Blog</button>
+        </a>
+    {% endif %}
+{% endblock %}

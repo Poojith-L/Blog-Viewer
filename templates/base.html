@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Blog Website</title>
+</head>
+<body>
+    <div class="header">
+        <h2>Welcome to the Blog Viewer</h2>
+    </div>
+    
+    {% if user.username %}
+    <div class="user-bar">
+        <h4>Welcome {{user.username}}</h4>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit"><b>Logout</b></button>
+        </form>
+    </div>
+    {% endif %}
+    
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

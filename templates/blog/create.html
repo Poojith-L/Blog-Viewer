@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Add Blog</title>
+</head>
+<body>
+    <div class="header"><h2>Blog Viewer — Create Post</h2></div>
+    <div class="form-container">
+        <h2>New Blog Post</h2>
+        <form action="{%url 'blog-create' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" class="button"/>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="blog-detail">
+        {{title}} by {{author}}
+        <br>
+        -------------------
+        <br><br>
+        {{body}}
+    </div>
+    <br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'blog-update' id %}">
+            <button type="button">Update</button>
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}?next={% url 'blog-update' id %}">
+            <button type="button">Update</button>
+        </a>
+    {% endif %}
+{% endblock %}
+           
+            
